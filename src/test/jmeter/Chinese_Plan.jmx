@@ -34,7 +34,7 @@
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
     &quot;body&quot;: &quot;中文, input_chinese_jmeter_will_block(hang)&quot;,&#xd;
-    &quot;words&quot;: &quot;经典永流传，鬼鬼&quot;&#xd;
+    &quot;words&quot;: &quot;经典永流传，鬼鬼，魔鬼&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
