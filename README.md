@@ -8,7 +8,7 @@ mvn jmeter:configure jmeter:gui -DguiTestFile=src/test/jmeter/Chinese_Plan.jmx
 
 - Step 2、edit HTTP Request Body Dada text area in (中文线程组) Thread Group. type some Chinese characters and save.
 
-[type some Chinese characters](./20221206205121.jpg)
+![type some Chinese characters](./20221206205121.jpg)
 
 and then, Jmeter GUI be suspended, I can't do anything. The log file ([target/jmeter/logs/Chinese_Plan.log](./Chinese_Plan.jmx.log)) can not find any helpful information.
 
