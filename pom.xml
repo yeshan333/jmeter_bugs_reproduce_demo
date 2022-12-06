@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>maven_jmeter</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <jmeter.result.jtl.dir>${project.build.directory}\test\jmeter\results</jmeter.result.jtl.dir>
+        <jmeter.result.html.dir>${project.build.directory}\test\jmeter\html</jmeter.result.html.dir>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.lazerycode.jmeter</groupId>
+                <artifactId>jmeter-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <!-- Generate JMeter configuration -->
+                    <execution>
+                        <id>configuration</id>
+                        <goals>
+                            <goal>configure</goal>
+                        </goals>
+                    </execution>
+                    <!-- Run JMeter tests -->
+                    <execution>
+                        <id>jmeter-tests</id>
+                        <goals>
+                            <goal>jmeter</goal>
+                        </goals>
+                    </execution>
+                    <!-- Fail build on errors in test -->
+                    <execution>
+                        <id>jmeter-check-results</id>
+                        <goals>
+                            <goal>results</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jmeterVersion>5.4.1</jmeterVersion>
+                    <resultsFileFormat>xml</resultsFileFormat>
+                    <ignoreResultFailures>true</ignoreResultFailures>
+                    <resultsDirectory>${jmeter.result.jtl.dir}</resultsDirectory>
+                    <resultsFileNameDateFormat>yyyy-MMdd-HHmmss-SSS</resultsFileNameDateFormat>
+                    <!-- pass jmx user defined variables -->
+                    <propertiesUser>
+                    </propertiesUser>
+                    <!-- set JVM params -->
+                    <jMeterProcessJVMSettings>
+                        <xms>5120</xms>
+                        <xmx>6144</xmx>
+                        <arguments>
+                            <argument>-server</argument>
+                            <argument>-XX:+HeapDumpOnOutOfMemoryError</argument>
+                            <argument>-XX:MaxMetaspaceSize=256m</argument>
+                            <argument>-XX:+UseG1GC</argument>
+                            <argument>-XX:MaxGCPauseMillis=100</argument>
+                            <argument>-XX:G1ReservePercent=20</argument>
+                        </arguments>
+                    </jMeterProcessJVMSettings>
+                    <jmeterExtensions>
+                    </jmeterExtensions>
+                    <!-- specify which tests -->
+                    <testFilesIncluded>
+                    </testFilesIncluded>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <!-- transforms XML files by applying XSLT stylesheets. jtl to html -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>xml-maven-plugin</artifactId>
+                <version>1.0.2</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <transformationSets>
+                        <transformationSet>
+                            <dir>${jmeter.result.jtl.dir}</dir>
+                            <stylesheet>${project.basedir}/src/test/resources/jmeter.results.shanhe.me.xsl</stylesheet>
+                            <outputDir>${jmeter.result.html.dir}</outputDir>
+                            <!-- jtl to html -->
+                            <fileMappers>
+                                <fileMapper
+                                        implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
+                                    <targetExtension>.html</targetExtension>
+                                </fileMapper>
+                            </fileMappers>
+                        </transformationSet>
+                    </transformationSets>
+                </configuration>
+<!--                using XSLT 2.0-->
+<!--                <dependencies>-->
+<!--                    <dependency>-->
+<!--                        <groupId>net.sf.saxon</groupId>-->
+<!--                        <artifactId>saxon</artifactId>-->
+<!--                        <version>8.7</version>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
