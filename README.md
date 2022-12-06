@@ -10,7 +10,7 @@ mvn jmeter:configure jmeter:gui -DguiTestFile=src/test/jmeter/Chinese_Plan.jmx
 
 [type some Chinese characters](./20221206205121.jpg)
 
-and then, Jmeter GUI be suspended, I can't do anything. The log file (target/jmeter/logs/Chinese_Plan.jmx.log) can not find any helpful information.
+and then, Jmeter GUI be suspended, I can't do anything. The log file ([target/jmeter/logs/Chinese_Plan.log](./Chinese_Plan.jmx.log)) can not find any helpful information.
 
 ## Re-produce machine info
 
