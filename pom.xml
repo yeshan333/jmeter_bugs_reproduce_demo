@@ -48,7 +48,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <jmeterVersion>5.4.1</jmeterVersion>
+                    <jmeterVersion>5.4.3</jmeterVersion>
                     <resultsFileFormat>xml</resultsFileFormat>
                     <ignoreResultFailures>true</ignoreResultFailures>
                     <resultsDirectory>${jmeter.result.jtl.dir}</resultsDirectory>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.1">
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.3">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Chinese Plan" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
@@ -34,7 +34,7 @@
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
     &quot;body&quot;: &quot;中文, input_chinese_jmeter_will_block(hang)&quot;,&#xd;
-    &quot;words&quot;: &quot;经典永流传，鬼鬼，魔鬼&quot;&#xd;
+    &quot;words&quot;: &quot;经典永流传，鬼鬼，魔鬼中文浮现了复现&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
